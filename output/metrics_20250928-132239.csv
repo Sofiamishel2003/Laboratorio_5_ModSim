@@ -1,0 +1,3 @@
+red,n,param,grado_medio,varianza_grado,grado_máximo,grado_mínimo
+Barabási–Albert,1000,m=3,5.982,52.765676,93,3
+Erdős–Rényi,1000,p≈0.0060,6.038,6.224556000000001,15,0
