@@ -46,7 +46,32 @@ def hist_and_save(degrees, title, filename, bins='auto', log_scale=False):
     plt.close()
     return outpath
 
+
+
 # a) Histogramas en escala lineal (dos figuras separadas por restricciones de la herramienta)
+
+def joined_hist(deg_ba, deg_er, title, filename, log_scale=False):
+    bins = np.linspace(0,deg_ba.max(), 40)
+    bins=range(0, deg_ba.max()+2)
+    fig, ax = plt.subplots(1,2, figsize=(10,4))
+    fig.suptitle(title)
+    ax[0].hist(deg_ba, bins)
+    ax[0].set_title("Barabási–Albert")
+    ax[1].hist(deg_er, bins)
+    ax[1].set_title("Erdős–Rényi")
+    if log_scale:
+        ax[0].set_xscale("log")
+        ax[1].set_yscale("log")
+    
+    outpath = outdir / filename
+    plt.tight_layout()
+    plt.savefig(outpath, dpi=200, bbox_inches="tight")
+    plt.close()
+    
+joined_hist(deg_ba, deg_er, 
+            "Distribución de grados (lineal)", 
+            f"histograma_joined_{run_tag}.png")
+
 path_hist_ba_linear = hist_and_save(
     deg_ba,
     title="Distribución de grados (lineal) — Barabási–Albert (n=1000, m=3)",
